@@ -11,12 +11,13 @@ import java.util.*;
  * @date 2021/12/12 3:25 下午
  */
 @Data
-public class BinTreeNode {
+public class BinTreeNode2 {
     public int val;
-    public BinTreeNode left;
-    public BinTreeNode right;
+    public BinTreeNode2 left;
+    public BinTreeNode2 right;
+    public BinTreeNode2 parent;
 
-    public BinTreeNode(int val) {
+    public BinTreeNode2(int val) {
         this.val = val;
     }
 
@@ -26,7 +27,7 @@ public class BinTreeNode {
      * 10      20
      * 5     7
      */
-    public static int[] preTraversal(BinTreeNode root) {
+    public static int[] preTraversal(BinTreeNode2 root) {
         ArrayList<Integer> ret = new ArrayList<>();
         preTraversal(root, ret);
         ret.forEach(r -> System.out.print(r + " "));
@@ -43,16 +44,16 @@ public class BinTreeNode {
      * <p>
      * 因为压入后出栈的时候是要先打印左边的。  也就是说右边的结点总是比左边的结点先压入
      */
-    public static void preWithStack(BinTreeNode root) {
+    public static void preWithStack(BinTreeNode2 root) {
         if (root == null) {
             return;
         }
 
-        Stack<BinTreeNode> stack = new Stack<>();
+        Stack<BinTreeNode2> stack = new Stack<>();
         stack.push(root);
 
         while (!stack.isEmpty()) {
-            BinTreeNode top = stack.pop();
+            BinTreeNode2 top = stack.pop();
             System.out.print(top.val + " ");
             if (top.right != null) {
                 stack.push(top.right);
@@ -66,7 +67,7 @@ public class BinTreeNode {
         System.out.println();
     }
 
-    public static void preTraversal(BinTreeNode root, ArrayList<Integer> arr) {
+    public static void preTraversal(BinTreeNode2 root, ArrayList<Integer> arr) {
         if (root == null) {
             return;
         }
@@ -76,7 +77,7 @@ public class BinTreeNode {
         preTraversal(root.right, arr);
     }
 
-    public static int[] inTraversal(BinTreeNode root) {
+    public static int[] inTraversal(BinTreeNode2 root) {
         ArrayList<Integer> ret = new ArrayList<>();
         inTraversal(root, ret);
         ret.forEach(r -> System.out.print(r + " "));
@@ -85,7 +86,7 @@ public class BinTreeNode {
         return ret.stream().mapToInt(d -> d).toArray();
     }
 
-    public static void inTraversal(BinTreeNode root, ArrayList<Integer> arr) {
+    public static void inTraversal(BinTreeNode2 root, ArrayList<Integer> arr) {
         if (root == null) {
             return;
         }
@@ -95,14 +96,14 @@ public class BinTreeNode {
         inTraversal(root.right, arr);
     }
 
-    public static void inWithStack(BinTreeNode root) {
+    public static void inWithStack(BinTreeNode2 root) {
         if (root == null) {
             return;
         }
 
         // 中序遍历 使用 stack 的精髓在于 脑海中想象图形；
         // 总是处理 二叉树的左斜边 入栈。   并且在出栈的时候检查右节点同样可以当做左斜边处理
-        Stack<BinTreeNode> leftStack = new Stack<>();
+        Stack<BinTreeNode2> leftStack = new Stack<>();
         while (!leftStack.isEmpty() || root != null) {
             if (root != null) {
                 // 最左不等于空，入栈
@@ -111,7 +112,7 @@ public class BinTreeNode {
             } else {
 
                 // 最左等于空了，出栈并且打印检查 右节点是否为空
-                BinTreeNode top = leftStack.pop();
+                BinTreeNode2 top = leftStack.pop();
                 System.out.print(top.val + " ");
                 root = top.right;
             }
@@ -120,7 +121,7 @@ public class BinTreeNode {
         System.out.println();
     }
 
-    public static int[] postTraversal(BinTreeNode root) {
+    public static int[] postTraversal(BinTreeNode2 root) {
         ArrayList<Integer> ret = new ArrayList<>();
         postTraversal(root, ret);
         ret.forEach(r -> System.out.print(r + " "));
@@ -129,7 +130,7 @@ public class BinTreeNode {
         return ret.stream().mapToInt(d -> d).toArray();
     }
 
-    public static void postTraversal(BinTreeNode root, ArrayList<Integer> arr) {
+    public static void postTraversal(BinTreeNode2 root, ArrayList<Integer> arr) {
         if (root == null) {
             return;
         }
@@ -148,17 +149,17 @@ public class BinTreeNode {
      *
      * @param root
      */
-    public static void postWithStack(BinTreeNode root) {
+    public static void postWithStack(BinTreeNode2 root) {
         if (root == null) {
             return;
         }
 
-        Stack<BinTreeNode> stack = new Stack<>();
+        Stack<BinTreeNode2> stack = new Stack<>();
         stack.push(root);
-        Stack<BinTreeNode> ret = new Stack<>();
+        Stack<BinTreeNode2> ret = new Stack<>();
         while (!stack.isEmpty()) {
             // 先压入 左节点
-            BinTreeNode top = stack.pop();
+            BinTreeNode2 top = stack.pop();
             ret.push(top);
             if (top.left != null) {
                 stack.push(top.left);
@@ -177,37 +178,25 @@ public class BinTreeNode {
     }
 
 
-    public static void main(String[] args) {
-        BinTreeNode root = Utils.genBinTree();
 
-        BinTreeNode.preTraversal(root);
-        BinTreeNode.preWithStack(root);
-
-        BinTreeNode.inTraversal(root);
-        BinTreeNode.inWithStack(root);
-
-        BinTreeNode.postTraversal(root);
-        BinTreeNode.postWithStack(root);
-    }
-
-    public static BinTreeNode gen(int len) {
+    public static BinTreeNode2 gen(int len) {
         System.out.println();
-        BinTreeNode root = new BinTreeNode(RandomUtil.randomInt(0, 10));
-        Deque<BinTreeNode> parent = new LinkedList<>();
+        BinTreeNode2 root = new BinTreeNode2(RandomUtil.randomInt(0, 10));
+        Deque<BinTreeNode2> parent = new LinkedList<>();
         parent.push(root);
 
 
         for (int i = 0; i < (len - 1); i++) {
-            Deque<BinTreeNode> children = new LinkedList<>();
+            Deque<BinTreeNode2> children = new LinkedList<>();
 
             while (!parent.isEmpty()) {
-                BinTreeNode top = parent.pop();
+                BinTreeNode2 top = parent.pop();
                 for (int j = 0; j < ((len - i) * (len - i)) / 2; j++) {
                     System.out.print("  ");
                 }
                 System.out.print(top.val);
-                top.left = new BinTreeNode(RandomUtil.randomInt(0, 10));
-                top.right = new BinTreeNode(RandomUtil.randomInt(0, 10));
+                top.left = new BinTreeNode2(RandomUtil.randomInt(0, 10));
+                top.right = new BinTreeNode2(RandomUtil.randomInt(0, 10));
 
                 children.offer(top.left);
                 children.offer(top.right);
@@ -226,31 +215,31 @@ public class BinTreeNode {
         return root;
     }
 
-    public static BinTreeNode genUnique(int len) {
+    public static BinTreeNode2 genUnique(int len) {
         System.out.println();
-        BinTreeNode root = new BinTreeNode(RandomUtil.randomInt(0, 100));
+        BinTreeNode2 root = new BinTreeNode2(RandomUtil.randomInt(0, 100));
         Set<Integer> set = new HashSet<>();
-        Deque<BinTreeNode> parent = new LinkedList<>();
+        Deque<BinTreeNode2> parent = new LinkedList<>();
         parent.push(root);
         set.add(root.val);
 
 
         for (int i = 0; i < (len - 1); i++) {
-            Deque<BinTreeNode> children = new LinkedList<>();
+            Deque<BinTreeNode2> children = new LinkedList<>();
 
             while (!parent.isEmpty()) {
-                BinTreeNode top = parent.pop();
+                BinTreeNode2 top = parent.pop();
                 for (int j = 0; j < ((len - i) * (len - i)) / 2; j++) {
                     System.out.print("  ");
                 }
                 System.out.print(top.val);
                 do {
-                    top.left = new BinTreeNode(RandomUtil.randomInt(0, 100));
+                    top.left = new BinTreeNode2(RandomUtil.randomInt(0, 100));
                 } while (set.contains(top.left.val));
                 set.add(top.left.val);
 
                 do {
-                    top.right = new BinTreeNode(RandomUtil.randomInt(0, 100));
+                    top.right = new BinTreeNode2(RandomUtil.randomInt(0, 100));
                 } while (set.contains(top.right.val));
                 set.add(top.right.val);
 
