@@ -27,7 +27,27 @@ public class Utils {
         System.out.println(Arrays.stream(arr).boxed().map(Object::toString).collect(Collectors.joining(", ")));
     }
 
-    public void splitLine() {
+    public void printArr(int[][] arr) {
+        System.out.println();
+        System.out.print("  | ");
+        for (int i = 0; i < arr[0].length; i++) {
+            System.out.print(i + "   ");
+        }
+        System.out.println();
+
+        for (int i = 0; i < arr.length; i++) {
+            System.out.print(i + " | ");
+            int column = arr[i].length;
+            for (int j = 0; j < column; j++) {
+                System.out.print(arr[i][j] + "   ");
+            }
+            System.out.println();
+        }
+    }
+
+
+
+        public void splitLine() {
         System.out.println("-----------------------------------------------------");
     }
 
