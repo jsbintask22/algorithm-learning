@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @UtilityClass
 public class Reverse {
 
+
     public static void main(String[] args) {
         int n = 4;
         System.out.println("暴力递归汉诺塔问题; n = " + n + ", 步骤: ");
@@ -59,12 +60,12 @@ public class Reverse {
 
 
         System.out.println("--------------------------------------------");
-        String str3 = "111311";
+        String str3 = "11013";
         List<String> ret3 = new ArrayList<>();
         num2Alphabet(str3.toCharArray(), 0, ret3, "");
         System.out.println(str3 + " 所有数字转换可能性: " + ret3.size());
         System.out.println(str3 + " 所有数字转换可能性(动态规划版本): " + dpNum2Alphabet(str3.toCharArray()));
-        System.out.println(ret3);
+        System.out.println(new LinkedHashSet<>(ret3));
 
 
         System.out.println("--------------------------------------------");
@@ -81,11 +82,12 @@ public class Reverse {
 
 
         System.out.println("--------------------------------------------");
-        int[] pokers = new int[]{1, 100, 3, 5, 100, 10, 1, 2};
+        int[] pokers = new int[]{1, 2, 10, 1, 2};
         System.out.println("扑克手牌为: ");
         Utils.printArr(pokers);
         System.out.println("先手选择最好结果是: " + first(pokers, 0, pokers.length - 1));
         System.out.println("后手选择最好结果是: " + second(pokers, 0, pokers.length - 1));
+        System.out.println("动态规划先后手最好结果: " + dpFirst(pokers));
 
 
         System.out.println("--------------------------------------------");
@@ -111,6 +113,15 @@ public class Reverse {
         System.out.println("机器人走路问题（动态规划解法）： N = " + NN + ", M = " + CUR + ", rest = " + REST + ", " +
                 "T = " + T + ", total = " + total
                 + ", 应该有这么多种走法: " + dpWalk0(NN, CUR, REST, total, T));
+
+
+        System.out.println("--------------------------------------------");
+        int[] moneys = new int[]{1, 3, 2};
+        int aim = 4;
+        Utils.printArr(moneys);
+        System.out.println("从数组中找到 " + aim + " 的钱共有: " + moneyAim(moneys, 0, aim, aim));
+        System.out.println("从数组中找到 " + aim + " 的钱共有(暴力递归2）: " + moneyAim2(moneys, 0, aim, aim));
+
     }
 
     /**
@@ -331,56 +342,42 @@ public class Reverse {
      * 动态规划版本的 字符转换
      */
     public int dpNum2Alphabet(char[] chars) {
-        // dp 意义在于当前还剩多少个待转换字符
-        int chrLength = chars.length;
-        int[] dp = new int[chrLength + 1];
+        // 假设 有数字   X1 X2 X3 ... Xn  字符串的当前 组合数  f(n)
+        // f(n) 的意义表示当前 n 个数字产生的组合数
 
-        // 初始化；最后剩 所有字符，没有一种方法;
-        dp[dp.length - 1] = 0;
+        // x1 x2 x3 ... x(n-1) 组合数 f(n - 1)
+        // x1 x2 x3 ... x(n - 2) 组合数 f(n - 2)
 
-        for (int i = chrLength - 1; i >= 0; i--) {
-            // 如果当前字符是 3，没得选，只能直接转换当前字符
-            int chrIdx = chrLength - i - 1;
-            char c = chars[chrIdx];
-            if (c == '0') {
-                // 字符是 0，
-                dp[i] = 0;
-            }
+        // x1 x2 x3 ... x(n - 2) x(n - 1) xn   f(n)
+        // 将 x(n - 1) xn 看做一个整体求解   则有  f(n) = f(n - 2)
+        // 将 xn 单独求解  则有  f(n) = f(n - 1)
 
-            if (c >= '3') {
-                dp[i] = dp[i + 1];
-            }
+        // 综上所述；  当  x(n - 1) 能和 xn 组合翻译时有  [10 - 25] 这些数字
 
-            if (c == '2') {
-                // '2' 有两种可能，直接转换和 加上后面的字符一起转换
-                int direct = dp[i + 1];
+        // 当 n = 1 时，我们知道肯定只有 1 个解；  所以  1 = f(1) = f(0)
 
-                int with = 0;
+        int N = chars.length;
 
-                if (chrIdx + 1 < chrLength && chars[chrIdx + 1] < '7') {
-                    with = dp[i + 2];
-                }
+        int[] dp = new int[N + 1];
+        dp[0] = 1;
 
-                dp[i] = 1 + direct + with;
-            }
-
-            if (c == '1') {
-                // '1' 也有两种可转换情况
-                int direct = dp[i + 1];
-
-                int with = 0;
-
-                if (i + 2 < dp.length) {
-                    with = dp[i + 2];
-                }
-
-                dp[i] = 1 + direct + with;
+        for (int i = 1; i < dp.length; i++) {
+            // 判断前一个字符是否能跟当前字符组合
+            char cur = chars[i - 1];
+            char pre = i - 2 >= 0 ? chars[i - 2] : '-';
+            if (pre == '0') {
+                dp[i] = dp[i - 1];
+            } else if (pre == '1') {
+                dp[i] = dp[i - 1] + dp[i - 2];
+            } else if (pre == '2' && cur < '6') {
+                dp[i] = dp[i - 1] + dp[i - 2];
+            } else {
+                // pre >= 3
+                dp[i] = dp[i - 1];
             }
         }
 
-        Utils.printArr(dp);
-
-        return dp[0];
+        return dp[N];
     }
 
     /**
@@ -534,6 +531,44 @@ public class Reverse {
 
         // 比较哪个选择好返回哪个
         return Math.max(leftPoint, rightPoint);
+    }
+
+    public String dpFirst(int[] pokers) {
+        // 动态规划直接解出 先手、后手的最好选择；
+        int N = pokers.length;
+
+        int[][] first = new int[N][N];
+        int[][] second = new int[N][N];
+
+        for (int i = 0; i < N; i++) {
+            first[i][i] = pokers[i];
+            second[i][i] = 0;
+        }
+
+        for (int i = 1; i < N; i++) {
+            int l = 0;
+            int r = i;
+            while (l < N && r < N) {
+                first[l][r] = Math.max(
+                        pokers[l] + second[l + 1][r],
+                        pokers[r] + second[l][r - 1]
+                );
+
+                second[l][r] = Math.min(
+                        0 + first[l + 1][r],
+                        0 + first[l][r - 1]
+                );
+
+                l++;
+                r++;
+            }
+        }
+
+        Utils.printArr(first);
+        System.out.println("----------------second:--------------");
+        Utils.printArr(second);
+
+        return "first: " + first[0][N - 1] + ", second: " + second[0][N - 1];
     }
 
     /**
@@ -750,4 +785,61 @@ public class Reverse {
         return dp[cur][rest];
     }
 
+
+    /**
+     * 找钱问题： 给定一个数组；  数组中的值为 每张纸币的 面额，给定目标   金额  aim，
+     * 每张面额都有任意 张；
+     * <p>
+     * 求： 组合成 aim 面额有多少种方法;
+     *
+     * @param idx  arr[0...idx) 为已经尝试过了的 面额
+     *             arr[idx...length) 为还没有尝试过的纸币
+     * @param rest 离目标还剩多少  金额
+     */
+    public int moneyAim(int[] arr, int idx, int aim, int rest) {
+        if (rest < 0) {
+            // base case; 剩余金额 小于0；  肯定不可能找到了； 直接返回 0 种结果;
+            return 0;
+        }
+
+        if (rest == 0) {
+            // base case; 没有剩余金额了； 全部填满了； 直接返回一种结果
+            return 1;
+        }
+
+
+
+        // rest > 0； 说明还能继续从 arr 中找符合条件的面额
+        int ret = 0;
+        for (int i = idx; i < arr.length; i++) {
+            int money = arr[i];
+            // 当前金额是符合条件的; 继续递归
+            ret += moneyAim(arr, i, aim, rest - money);
+        }
+
+        return ret;
+    }
+
+    public int moneyAim2(int[] arr, int idx, int aim, int rest) {
+        if (rest < 0) {
+            // base case； 如果剩余要找的金额 = 0； 说明当前情况不符合；直接返回0
+            return 0;
+        }
+
+
+        if (idx == arr.length) {
+            if ( rest == 0) {
+                return 1;
+            }
+
+            return 0;
+        }
+
+        int ret = 0;
+        for (int i = 0; i * arr[idx] <= rest; i++) {
+            ret += moneyAim2(arr, idx + 1, aim, rest - (i * arr[idx]));
+        }
+
+        return ret;
+    }
 }
