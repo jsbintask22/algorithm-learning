@@ -8,10 +8,6 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/**
- * @author aaron.zou
- * @date 2021/11/6 3:37 下午
- */
 @UtilityClass
 public class Utils {
 
@@ -88,6 +84,14 @@ public class Utils {
                 .map(String::trim)
                 .mapToInt(Integer::parseInt)
                 .toArray();
+    }
+
+    public int[] arr2(String nums) {
+        return Stream.of(nums.split(""))
+                .map(String::trim)
+                .mapToInt(Integer::parseInt)
+                .toArray();
+
     }
 
 

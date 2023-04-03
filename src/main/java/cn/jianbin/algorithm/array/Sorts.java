@@ -6,12 +6,6 @@ import lombok.experimental.UtilityClass;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/**
- * @author aaron.zou
- * @date 2021/12/19 10:36 上午
- * <p>
- * 各种排序
- */
 @UtilityClass
 public class Sorts {
 
@@ -94,9 +88,6 @@ public class Sorts {
         System.out.println(binarySearch(sortedArr, 78));
     }
 
-    /**
-     * 选择排序
-     */
     public int[] selectSort(int[] arr) {
         if (arr == null || arr.length < 2) {
             return arr;
@@ -120,9 +111,6 @@ public class Sorts {
         return arr;
     }
 
-    /**
-     * 冒泡排序
-     */
     public int[] bubbleSort(int[] arr) {
         if (arr == null || arr.length < 2) {
             return arr;
@@ -142,9 +130,6 @@ public class Sorts {
     }
 
 
-    /**
-     * 插入排序
-     */
     public int[] insertSort(int[] arr) {
         if (arr == null || arr.length < 2) {
             return arr;
@@ -174,9 +159,6 @@ public class Sorts {
         return arr;
     }
 
-    /**
-     * 希尔排序
-     */
     public int[] shellSort(int[] arr) {
         if (arr == null || arr.length < 2) {
             return arr;
@@ -200,11 +182,6 @@ public class Sorts {
         return arr;
     }
 
-    /**
-     * 快速排序
-     *
-     * 脑海中一定要想象交换过程；   左指针右移、右指针左移； 最后考虑极值情况；  最大值、最小值在最右边
-     */
     public int[] quickSort(int[] arr, int start, int end) {
         if (arr == null || end - start < 1) {
             return arr;
@@ -244,9 +221,6 @@ public class Sorts {
 
     }
 
-    /**
-     *  合并两个有序的数组
-     */
     public int[] mergerSortedArr(int[] arr1, int [] arr2) {
         if (arr1 == null || arr1.length == 0) {
             return arr2;
@@ -280,9 +254,6 @@ public class Sorts {
         return merger;
     }
 
-    /**
-     *  有了下面的基础，接下来要把范围缩小，一直缩小到长度只生效 1 或者 2
-     */
     public void mergerArr(int[] arr, int left, int right) {
         // 递归跳出 break 的条件是  只有一个元素，也就是 left = right；
         if (left == right) {
@@ -298,9 +269,6 @@ public class Sorts {
     }
 
 
-    /**
-     *  对单个数组进行归并排序；  设置左右指针，想象两边的数组都应排好序了
-     */
     public void mergerArr(int[] arr, int left, int mid, int right) {
         if (arr == null || left >= mid) {
             return;
@@ -330,9 +298,6 @@ public class Sorts {
         }
     }
 
-    /**
-     *  计数排序； 适合量大但是 值 范围不大的类型
-     */
     public void countSort(int[] arr) {
         // 值 -> 次数
         Map<Integer, Integer> countMap = new TreeMap<>();

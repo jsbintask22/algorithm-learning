@@ -4,17 +4,6 @@ import cn.hutool.core.util.RandomUtil;
 import cn.jianbin.alogthrim.datastructure.Node;
 import lombok.experimental.UtilityClass;
 
-/**
- * @author aaron.zou
- * @date 2022/1/12 9:02 下午
- *
- * 合并两个有序链表
- * 1 -> 2 -> 3
- *
- * 1 -> 3 -> 3 -> 7
- *
- * 1 -> 1 -> 2 -> 3 -> 3 -> 3 -> 7
- */
 @UtilityClass
 public class MergerLinkList {
     public static void main(String[] args) {

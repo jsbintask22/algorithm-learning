@@ -2,12 +2,6 @@ package cn.jianbin.algorithm.linklist;
 
 import lombok.experimental.UtilityClass;
 
-/**
- * @author aaron.zou
- * @date 2022/2/10 7:18 下午
- *
- * 深度克隆 Node 链表
- */
 @UtilityClass
 public class ListCopy {
     static class Node {

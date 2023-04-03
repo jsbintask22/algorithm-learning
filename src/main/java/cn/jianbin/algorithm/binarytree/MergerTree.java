@@ -4,10 +4,6 @@ import cn.jianbin.alogthrim.datastructure.BinTreeNode;
 import lombok.experimental.UtilityClass;
 import org.apache.commons.jexl3.*;
 
-/**
- * @author aaron.zou
- * @date 2022/2/27 5:05 下午
- */
 @UtilityClass
 public class MergerTree {
     public static void main(String[] args) {

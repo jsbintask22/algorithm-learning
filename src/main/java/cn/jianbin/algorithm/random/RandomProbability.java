@@ -5,10 +5,6 @@ import lombok.experimental.UtilityClass;
 
 import java.util.Random;
 
-/**
- * @author aaron.zou
- * @date 2022/1/3 4:23 下午
- */
 @UtilityClass
 public class RandomProbability {
 
@@ -96,10 +92,6 @@ public class RandomProbability {
 
     }
 
-    /**
-     *  随机等概率生成 17 - 37 的数
-     * @return
-     */
     public static int f1() {
         return ((int) (Math.random() * (37 - 17 + 1)) + 17);
     }
@@ -113,9 +105,6 @@ public class RandomProbability {
         return ans > 27 ? 1 : 0;
     }
 
-    /**
-     *  求出 [0, 31] 等概率数字
-     */
     public static int f3() {
         return (zeroOrOne() << 4)
                 +
@@ -128,9 +117,6 @@ public class RandomProbability {
                 zeroOrOne();
     }
 
-    /**
-     *  再根据上面的 [0, 31] 等概率得到 [0, 18]
-     */
     public static int f4() {
         int ans;
         do {
@@ -140,19 +126,10 @@ public class RandomProbability {
         return ans;
     }
 
-    /**
-     *  有了上面的 [0, 18] 等概率函数，即可算出 49 - 67 等概率函数
-     * @return
-     */
     public static int f5() {
         return f4() + 49;
     }
 
-    /**
-     *  如果 两个数出现的概率为固定但是不相等；
-     *
-     *  怎么得出相等概率函数呢？
-     */
     public int tenOrTwenty() {
         return Math.random() < 0.84 ? 10 : 20;
     }

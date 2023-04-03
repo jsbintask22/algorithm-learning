@@ -8,12 +8,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-/**
- * @author aaron.zou
- * @date 2021/12/18 3:01 下午
- *
- * 层级遍历二叉树
- */
 @UtilityClass
 public class BinTreeLevelPrint {
     public static void main(String[] args) {

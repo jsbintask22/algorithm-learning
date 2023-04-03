@@ -3,16 +3,6 @@ package cn.jianbin.algorithm.array;
 import cn.jianbin.algorithm.utils.Utils;
 import lombok.experimental.UtilityClass;
 
-/**
- * @author aaron.zou
- * @date 2022/2/7 7:32 下午
- *
- * 堆排序，利用 堆的调整  heapify  logN 的时间复杂度；
- *
- * 每次调整后。 最大值肯定在第一位，将 0 和 最后一位替换；
- *
- * 这样就得到了有序数组；
- */
 @UtilityClass
 public class HeapSort {
 

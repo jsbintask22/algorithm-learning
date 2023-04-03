@@ -6,12 +6,6 @@ import cn.jianbin.algorithm.utils.Utils;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author aaron.zou
- * @date 2021/11/6 3:32 下午
- *
- * 数字相加，返回目标值 的下标
- */
 public class NumSum {
 
     public static void main(String[] args) {

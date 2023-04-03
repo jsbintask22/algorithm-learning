@@ -4,10 +4,6 @@ import cn.jianbin.alogthrim.datastructure.LHeap;
 
 import java.util.stream.IntStream;
 
-/**
- * @author aaron.zou
- * @date 2022/2/6 5:02 下午
- */
 public class HeapTest {
 
     public static void main(String[] args) {

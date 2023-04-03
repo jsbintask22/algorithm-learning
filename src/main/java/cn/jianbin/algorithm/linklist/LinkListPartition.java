@@ -4,12 +4,6 @@ import cn.hutool.core.util.RandomUtil;
 import cn.jianbin.alogthrim.datastructure.Node;
 import lombok.experimental.UtilityClass;
 
-/**
- * @author aaron.zou
- * @date 2022/2/9 11:15 上午
- *
- * 给定一个数。  将链表中的值 按照 小于  等于 大于重组 链表
- */
 @UtilityClass
 public class LinkListPartition {
     public static void main(String[] args) {

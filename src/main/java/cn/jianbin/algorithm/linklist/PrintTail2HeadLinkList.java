@@ -6,10 +6,6 @@ import lombok.experimental.UtilityClass;
 
 import java.util.Stack;
 
-/**
- * @author aaron.zou
- * @date 2021/12/12 3:13 下午
- */
 @UtilityClass
 public class PrintTail2HeadLinkList {
     public static void main(String[] args) {

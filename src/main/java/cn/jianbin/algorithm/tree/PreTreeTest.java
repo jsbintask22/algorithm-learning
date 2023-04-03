@@ -4,10 +4,6 @@ import cn.hutool.core.util.RandomUtil;
 import cn.jianbin.alogthrim.datastructure.PreTree;
 import lombok.experimental.UtilityClass;
 
-/**
- * @author aaron.zou
- * @date 2022/2/8 7:11 下午
- */
 @UtilityClass
 public class PreTreeTest {
     public static void main(String[] args) {

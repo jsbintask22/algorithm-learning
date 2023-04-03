@@ -4,12 +4,6 @@ import cn.hutool.core.util.RandomUtil;
 import cn.jianbin.algorithm.utils.Utils;
 import lombok.experimental.UtilityClass;
 
-/**
- * @author aaron.zou
- * @date 2022/1/9 5:08 下午
- *
- * 二分查找
- */
 @UtilityClass
 public class BinarySearch {
 
@@ -66,9 +60,6 @@ public class BinarySearch {
         return -1;
     }
 
-    /**
-     *  二分查找一个有序数组中；  大于等于某个数最左的位置
-     */
     public int searchFarLeftIdxMoreThanTarget(int[] arr, int target) {
         if (arr == null || arr.length == 0) {
             return -1;
@@ -90,12 +81,6 @@ public class BinarySearch {
         return ret;
     }
 
-    /**
-     *  二分查找局部最小问题；
-     *
-     *  有一个无序数组，任意相邻两个数不相等； 求一个局部最小位置：  这个数 既小于左边又要小于右边，称之为局部最小
-     *
-     */
     public int searchPartialMinIdx(int[] arr)  {
         if (arr == null || arr.length == 0) {
             return -1;

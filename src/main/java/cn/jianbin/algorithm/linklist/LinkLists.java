@@ -6,10 +6,6 @@ import cn.jianbin.alogthrim.datastructure.LStack;
 import cn.jianbin.alogthrim.datastructure.Node;
 import lombok.experimental.UtilityClass;
 
-/**
- * @author aaron.zou
- * @date 2022/1/10 10:36 下午
- */
 @UtilityClass
 public class LinkLists {
 
@@ -48,9 +44,6 @@ public class LinkLists {
         }
     }
 
-    /**
-     *  反转链表
-     */
     public Node reversed(Node head) {
         if (head == null) {
             return null;
@@ -69,9 +62,6 @@ public class LinkLists {
         return pre;
     }
 
-    /**
-     *  反转双链表
-     */
     public DNode reversed(DNode head) {
         if (head == null) {
             return null;

@@ -4,18 +4,6 @@ import cn.hutool.core.util.RandomUtil;
 import cn.jianbin.alogthrim.datastructure.Node;
 import lombok.experimental.UtilityClass;
 
-/**
- * @author aaron.zou
- * @date 2022/1/12 8:38 下午
- *
- * 添加两个数到一个链表
- * 123 + 13 = 136
- *
- * 3 -> 1
- * 3 -> 2 -> 1
- *
- * 6 -> 3 -> 1
- */
 @UtilityClass
 public class AddTwoNumToLinkList {
 

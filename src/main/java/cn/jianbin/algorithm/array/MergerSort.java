@@ -3,10 +3,6 @@ package cn.jianbin.algorithm.array;
 import cn.jianbin.algorithm.utils.Utils;
 import lombok.experimental.UtilityClass;
 
-/**
- * @author aaron.zou
- * @date 2022/1/21 8:53 下午
- */
 @UtilityClass
 public class MergerSort {
     public static void main(String[] args) {
@@ -21,9 +17,6 @@ public class MergerSort {
         }
     }
 
-    /**
-     *  让这个数组在 start - end 有序
-     */
     public void merger(int [] arr, int start, int end) {
         if (end == start) {
             return;

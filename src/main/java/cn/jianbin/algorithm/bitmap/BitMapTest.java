@@ -4,10 +4,6 @@ import cn.hutool.core.util.RandomUtil;
 import cn.jianbin.alogthrim.datastructure.BitMap;
 import lombok.experimental.UtilityClass;
 
-/**
- * @author aaron.zou
- * @date 2022/1/14 7:22 下午
- */
 @UtilityClass
 public class BitMapTest {
     public static void main(String[] args) {

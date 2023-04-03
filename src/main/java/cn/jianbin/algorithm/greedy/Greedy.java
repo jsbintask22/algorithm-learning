@@ -11,10 +11,6 @@ import lombok.experimental.UtilityClass;
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * @author aaron.zou
- * @date 2022/4/8 9:38 下午
- */
 @UtilityClass
 public class Greedy {
     public static void main(String[] args) {
@@ -61,24 +57,6 @@ public class Greedy {
 
     }
 
-    /**
-     * 会议有 开始时间、结束时间；
-     * 给定指定个会议，求最多可以安排多少会议？
-     * <p>
-     * 0-10
-     * 8 - 20
-     * 10-30
-     * 10 - 15
-     * 15 - 20
-     * 30 - 35
-     * 36 - 40
-     * <p>
-     * 这个例子最多能排两场;
-     *
-     * @param meetings    当前剩余会议
-     * @param done        已经安排了多少场会议
-     * @param currentTime 当前到了哪场会议了
-     */
     public int mostMeeting(List<Meeting> meetings, int done, int currentTime) {
         if (meetings.size() == 0) {
             // 说明没有会议要排了
@@ -102,9 +80,6 @@ public class Greedy {
         return ret;
     }
 
-    /**
-     * 贪心算法，直接从结束时间最小贪心
-     */
     public int mostMeetingByGreedy(List<Meeting> meetings) {
         // 按照结束时间排序
         meetings.sort(Comparator.comparingInt(c -> c.end));
@@ -129,17 +104,6 @@ public class Greedy {
         int end;
     }
 
-    /**
-     * 贪心2： 一个字符串中只有  "."  和  "X"，
-     * . 表示灯笼位置， X 表示墙；   .X...XX..X
-     * 一个灯笼可以照亮周边的两个   "."
-     * <p>
-     * 问题：最少需要多少灯笼才能照亮所有  "."
-     *
-     * @param chars      chars[0...used] 已经选择好了放的灯
-     *                   chars[used+1...] 还可以选择放灯还是不放灯的坑位
-     * @param lightsIdxs [0...used] 具体选择的是哪些位置放的灯
-     */
     public int leastLantern(char[] chars, int used, Set<Integer> lightsIdxs) {
         if (used == chars.length) {
             // 已经选择的位置到了最后了； 可以直接返回
@@ -186,20 +150,6 @@ public class Greedy {
         return ret;
     }
 
-    /**
-     * 贪心求解；  永远只关注当前步骤；
-     * 假设当前位置 是   i；
-     *    则：
-     *       i = X；  没得选，不能放灯，跳到下一步去做决定
-     *
-     *
-     *       i = .   i为坑位，看下一个能不能放灯
-     *
-     *
-     *
-     * @param chars
-     * @return
-     */
     public int leastLanternByGreedy(char[] chars) {
         int ret = 0;
         int idx = 0;
@@ -231,18 +181,6 @@ public class Greedy {
         return ret;
     }
 
-    /**
-     * 切金条；  每次可以切一刀；
-     *
-     * 切出来后要使用 切后相同的铜块；
-     *
-     * 问：给定指定的目标金条长度，花费的铜块最少；
-     *
-     * 40 30 20 10
-     *
-     * 金条长度 = 60；
-     *
-     */
     public int lessMoney(int[] target) {
         // 构造小根堆
         PriorityQueue<Integer> priorityQueue = new PriorityQueue<>();
@@ -286,12 +224,6 @@ public class Greedy {
         return ret;
     }
 
-    /**
-     * 最大生产值问题： 一个项目由 成本和利润组成；   k  v
-     * 给定 N 个项目，初始资金 x，要求投资项目  y 个；  怎么最大化生产总值
-     *
-     * 贪心策略： 先贪 成本最小的。 然后在成本最小中的选择 利润 + 成本 最大的
-     */
     public int maxProductByGreedy(Project[] projects, int x, int y) {
         // 准备两个堆； 一个按照 成本 cost 小根堆
         // 一个按照 总值 大根堆

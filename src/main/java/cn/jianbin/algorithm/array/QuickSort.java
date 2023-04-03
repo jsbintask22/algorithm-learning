@@ -3,12 +3,6 @@ package cn.jianbin.algorithm.array;
 import cn.jianbin.algorithm.utils.Utils;
 import lombok.experimental.UtilityClass;
 
-/**
- * @author aaron.zou
- * @date 2022/1/21 7:27 下午
- * <p>
- * 快排复习
- */
 @UtilityClass
 public class QuickSort {
 

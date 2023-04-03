@@ -6,18 +6,6 @@ import lombok.experimental.UtilityClass;
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * @author aaron.zou
- * @date 2022/1/12 9:47 下午
- *
- * 局部链表反转
- *
- * 1 -> 2 -> 3 -> 4 -> 5 -> 6 -> 7 -> 8
- *
- * 传入 3 变成
- *
- * 3 -> 2 -> 1 -> 6 -> 5 -> 4 -> 7 -> 8
- */
 @UtilityClass
 public class LocalReverseList {
     public static void main(String[] args) {
@@ -56,9 +44,6 @@ public class LocalReverseList {
         return ret;
     }
 
-    /**
-     *  从 start开始，返回第 k 个节点
-     */
     public Node getKEndNode(Node start, int k) {
         while (--k > 0 && start != null) {
             start = start.next;
@@ -101,12 +86,6 @@ public class LocalReverseList {
         return reversedHead;
     }
 
-    /**
-     *  局部反转 start 到 end的节点
-     *  start -> end -> end.next
-     *
-     *  end -> start -> end.next
-     */
     public Node reverseNode(Node start, Node end) {
         Node endNext = end.next;
 

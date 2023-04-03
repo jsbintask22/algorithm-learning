@@ -2,15 +2,6 @@ package cn.jianbin.algorithm.array;
 
 import cn.jianbin.algorithm.utils.Utils;
 
-/**
- * @author aaron.zou
- * @date 2021/12/11 12:37 下午
- *
- * 找出数组中重复的数字。
- *
- * 在一个长度为 n 的数组 nums 里的所有数字都在 0 ～ n-1 的范围内。
- * 数组中某些数字是重复的，但不知道有几个数字重复了，也不知道每个数字重复了几次。请找出数组中任意一个重复的数字。
- */
 public class FindRepeatNum {
 
     public static void main(String[] args) {
@@ -32,9 +23,6 @@ public class FindRepeatNum {
 
     }
 
-    /**
-     * @param arr 1 2 3 4 4 3 5 7
-     */
     public static int findRepeatNum(int[] arr) {
         int[] index = new int[arr.length];
 

@@ -2,10 +2,6 @@ package cn.jianbin.algorithm.linklist;
 
 import cn.jianbin.alogthrim.datastructure.Node;
 
-/**
- * @author aaron.zou
- * @date 2021/11/6 1:38 下午
- */
 public class LinkListPairSwap {
 
     public static void main(String[] args) {

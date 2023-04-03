@@ -5,18 +5,6 @@ import lombok.experimental.UtilityClass;
 
 import java.util.Stack;
 
-/**
- * @author aaron.zou
- * @date 2022/2/8 8:34 下午
- *
- * 回文 链表
- * 1 2 3 2 1
- * 1 2 3 3 2 1
- * 1 1
- *
- * 1 2 2 1
- *
- */
 @UtilityClass
 public class LinkListMirror {
     public static void main(String[] args) {
@@ -27,9 +15,6 @@ public class LinkListMirror {
         System.out.println(isMirrorWithStack(root));
     }
 
-    /**
-     *  判断是否回文链表； 使用 栈
-     */
     public boolean isMirrorWithStack(Node head) {
         if (head == null || head.next == null) {
             return true;
@@ -111,9 +96,6 @@ public class LinkListMirror {
         return ret;
     }
 
-    /**
-     *  返回链表的 中间节点 OR 中间偏上（如果是偶数）
-     */
     public Node midOrUpMid(Node head) {
         // 如果只有 0 1 2 个节点 返回自己
         if (head == null || head.next == null || head.next.next == null) {

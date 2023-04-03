@@ -2,12 +2,6 @@ package cn.jianbin.algorithm.array;
 
 import cn.jianbin.algorithm.utils.Utils;
 
-/**
- * @author aaron.zou
- * @date 2021/12/11 8:53 下午
- * <p>
- * https://leetcode-cn.com/problems/er-wei-shu-zu-zhong-de-cha-zhao-lcof/solution/mian-shi-ti-04-er-wei-shu-zu-zhong-de-cha-zhao-zuo/
- */
 public class SortMatrixFindNum {
 
     public static void main(String[] args) {

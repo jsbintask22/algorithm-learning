@@ -5,11 +5,6 @@ import cn.jianbin.alogthrim.datastructure.Node;
 import java.util.HashSet;
 import java.util.Set;
 
-/**
- * @author aaron.zou
- * @date 2021/11/14 2:53 下午
- */
-
 public class LinkListCycle {
     public static void main(String[] args) {
         Node head = Node.genCycle();

@@ -6,11 +6,6 @@ import lombok.experimental.UtilityClass;
 
 import java.util.*;
 
-/**
- * @author aaron.zou
- * @date 2021/12/18 3:08 下午
- * 二叉树的最大层级
- */
 @UtilityClass
 public class BinTreeMaxLevel {
     public static void main(String[] args) {
