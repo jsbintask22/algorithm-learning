@@ -30,7 +30,7 @@ import lombok.experimental.UtilityClass;
  * nums[i] 不是 0 就是 1
  */
 @UtilityClass
-public class Offer11 {
+public class Off11M {
 
     public static void main(String[] args) {
         System.out.println(solution(Utils.arr("0,1,1,0,1,0")));

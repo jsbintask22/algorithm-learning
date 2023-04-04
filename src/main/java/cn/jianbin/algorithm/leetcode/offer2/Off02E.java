@@ -31,7 +31,7 @@ package cn.jianbin.algorithm.leetcode.offer2;
  * 字符串如果不是 "0" ，就都不含前导零。
  *
  */
-public class Offer02 {
+public class Off02E {
 
     public static void main(String[] args) {
         System.out.println(solution("10101", "1011"));

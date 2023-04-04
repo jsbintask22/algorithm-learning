@@ -41,7 +41,7 @@ import lombok.experimental.UtilityClass;
  * 如果你已经实现 O(n) 时间复杂度的解法, 请尝试设计一个 O(n log(n)) 时间复杂度的解法。
  */
 @UtilityClass
-public class Offer08 {
+public class Off08M {
 
     public static void main(String[] args) {
         // System.out.println(solution(Utils.arr("2,3,1,2,1,3"), 7));

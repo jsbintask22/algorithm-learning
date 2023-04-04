@@ -1,6 +1,5 @@
 package cn.jianbin.algorithm.leetcode.offer2;
 
-import cn.hutool.core.collection.ListUtil;
 import cn.jianbin.algorithm.utils.Utils;
 
 import java.util.ArrayList;
@@ -50,7 +49,7 @@ import java.util.List;
  * 3 <= nums.length <= 3000
  * -105 <= nums[i] <= 105
  */
-public class Offer07 {
+public class Off07M {
 
     public static void main(String[] args) {
 

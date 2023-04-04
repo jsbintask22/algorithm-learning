@@ -32,7 +32,7 @@ import lombok.experimental.UtilityClass;
  * 0 <= k <= 106
  */
 @UtilityClass
-public class Offer09 {
+public class Off09M {
 
     public static void main(String[] args) {
         System.out.println(solution(Utils.arr("100,5,2,6"), 100));

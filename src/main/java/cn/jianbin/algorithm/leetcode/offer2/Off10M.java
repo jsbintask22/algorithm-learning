@@ -33,7 +33,7 @@ import java.util.Map;
  * -107 <= k <= 107
  */
 @UtilityClass
-public class Offer10 {
+public class Off10M {
     public static void main(String[] args) {
         System.out.println(solution(Utils.arr("1,1,1"), 2));
 

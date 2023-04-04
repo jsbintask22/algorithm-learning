@@ -42,7 +42,7 @@ import java.util.Map;
  * -1000 <= target <= 1000
  * 仅存在一个有效答案
  */
-public class Offer06 {
+public class Off06E {
 
     public static void main(String[] args) {
         // TODO: aaron.zou 2023/4/1 优化： 使用二分查找，可以优化成 o(nlog(n) )  利用好 数组是有序的这个特点；

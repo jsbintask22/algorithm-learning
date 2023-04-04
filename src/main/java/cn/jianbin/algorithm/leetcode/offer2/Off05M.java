@@ -1,12 +1,10 @@
 package cn.jianbin.algorithm.leetcode.offer2;
 
-import java.util.Map;
-
 /**
  * @author jianbin.
  * @date 2023/4/1 19:59
  */
-public class Offer05 {
+public class Off05M {
 
 
     public static void main(String[] args) {

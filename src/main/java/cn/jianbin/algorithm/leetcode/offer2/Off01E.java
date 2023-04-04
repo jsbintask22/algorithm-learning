@@ -37,7 +37,7 @@ package cn.jianbin.algorithm.leetcode.offer2;
 链接：https://leetcode.cn/problems/xoh6Oh
 著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
  */
-public class Offer01 {
+public class Off01E {
     
     public static void main(String[] args) {
         System.out.println(Integer.MIN_VALUE - 1);

@@ -2,9 +2,6 @@ package cn.jianbin.algorithm.leetcode.offer2;
 
 import cn.jianbin.algorithm.utils.Utils;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * @author jianbin.
  * @date 2023/4/1 19:12
@@ -35,7 +32,7 @@ import java.util.Map;
  *
  * 进阶：你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？
  */
-public class Offer04 {
+public class Off04M {
 
     public static void main(String[] args) {
         System.out.println(solution(Utils.arr2("1112223555000")));
