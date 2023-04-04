@@ -3,6 +3,9 @@ package cn.jianbin.algorithm.leetcode.offer2;
 import cn.jianbin.algorithm.utils.Utils;
 import lombok.experimental.UtilityClass;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author aaron.zou
  * @date 2023/4/3 3:10 PM
@@ -37,9 +40,39 @@ public class Off11M {
 
         System.out.println(solution(Utils.arr("0,0,0,1,1,1,0")));
 
+        System.out.println(solution2(Utils.arr("0,0,0,1,1,1,0")));
+
     }
 
-    public int solution(int[] arr) {
+    public int solution2(int[] arr) {
+        // 0,0,0,1,1,1,0；
+        // 构建一个前缀和 数组； pre
+        // -1,-2,-3,-2,-1,0,-1
+        // （-1，0），（-2，1），（-3，2）
+
+        Map<Integer, Integer> preMap = new HashMap<>();
+        preMap.put(0, -1);
+
+        int preSum = 0;
+        int maxLen = 0;
+
+        for (int i = 0; i < arr.length; i++) {
+            // 01011
+            // -1 0 -1 0 1
+            preSum += arr[i] == 0 ? -1 : 1;
+
+            // 检查 presum 是否已经在map中出现过了；
+            if (preMap.containsKey(preSum)) {
+                maxLen = Math.max(maxLen, i - preMap.get(preSum));
+            } else {
+                preMap.put(preSum, i);
+            }
+        }
+
+        return maxLen;
+    }
+
+        public int solution(int[] arr) {
         // 这里跟题目不一样，这里是找 相同数量 0 和 1 并且 0 和 1 必须挨着；
         // 两个指针，一直往后面移动 判断当前 是否与前面不一样； 则可以加入；
         // 遇到一样的停止，并且判断当前 已累计的是 奇数还是偶数；
