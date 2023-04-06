@@ -38,8 +38,40 @@ import lombok.experimental.UtilityClass;
 public class Off20M {
 
     public static void main(String[] args) {
+        System.out.println(solution("aaa"));
 
+        System.out.println(solution("abc"));
     }
 
+    public int solution(String s) {
+        // 思路； 遍历每一个位置，以该位置 i 为回文串的中心，往两边不断扩展（必须同时，这样 i 才是中心）
+        // 中心点也可能是 两个字符； i,i + 1;
+
+        int start = 0;
+        int len = s.length();
+        int max = 0;
+
+        while (start < len) {
+            max += countPalindrome(s, start, start);
+            max += countPalindrome(s, start, start + 1);
+            start++;
+        }
+
+        return max;
+    }
+
+    private int countPalindrome(String s, int left, int right) {
+        // 统计以 left，right 为中心可得到多少个回文串；
+        int ret = 0;
+        int len = s.length();
+
+        while (left >= 0 && right < len && s.charAt(left) == s.charAt(right)) {
+            ret++;
+            left--;
+            right++;
+        }
+
+        return ret;
+    }
 
 }
