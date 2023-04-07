@@ -76,4 +76,9 @@ public class Off24E {
 
         return pre;
     }
+
+    public ListNode solution(ListNode head) {
+        // 递归解决；
+
+    }
 }
