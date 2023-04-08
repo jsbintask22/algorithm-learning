@@ -12,14 +12,14 @@ public class ListNode {
     public int val;
     public ListNode next;
 
-    ListNode() {
+    public ListNode() {
     }
 
     public ListNode(int val) {
         this.val = val;
     }
 
-    ListNode(int val, ListNode next) {
+    public ListNode(int val, ListNode next) {
         this.val = val;
         this.next = next;
     }
@@ -54,5 +54,22 @@ public class ListNode {
         sb.append(head.val);
 
         System.out.println(sb);
+    }
+
+    public static String toStr(ListNode head) {
+        if (head == null) {
+            return "";
+        }
+
+        StringBuilder sb = new StringBuilder();
+
+        while (head.next != null) {
+            sb.append(head.val).append("->");
+            head = head.next;
+        }
+
+        sb.append(head.val);
+
+        return sb.toString();
     }
 }

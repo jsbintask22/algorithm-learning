@@ -77,8 +77,16 @@ public class Off24E {
         return pre;
     }
 
-    public ListNode solution(ListNode head) {
+    public ListNode solution2(ListNode head) {
         // 递归解决；
+        if (head == null || head.next == null) {
+            return head;
+        }
 
+        // 1 -> 2 -> 3 -> 4 -> 5
+        ListNode newHead = solution2(head);
+        head.next.next = head;
+        head.next = null;
+        return newHead;
     }
 }
