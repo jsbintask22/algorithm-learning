@@ -72,7 +72,12 @@ public class Off36M {
 
 
     public static void main(String[] args) {
-        System.out.println(solution(new String[]{}));
+       // System.out.println(solution(new String[]{"4","13","5","/","+"}));
+
+        System.out.println(solution(new String[]{"10","6","9","3","+","-11","*","/","*","17","+","5","+"}));
+
+
+
     }
 
     public int solution(String[] tokens) {
@@ -85,23 +90,30 @@ public class Off36M {
 
         for (String token : tokens) {
             boolean isNumber = isNumber(token);
-            if (isNumber) {
-                stack.push(Integer.parseInt(token));
-            } else if (isOperator(token)) {
+
+            if (isOperator(token)) {
                 // 出栈；
-                Integer v1 = stack.pop();
+                // 先入栈的 后出来；
                 Integer v2 = stack.pop();
+                Integer v1 = stack.pop();
 
-                if ("+".equals(token)) {
-                    stack.push(v1 + v2);
-                } else if ("-".equals(token)) {
-                    stack.push(v1 - v2);
+                switch (token) {
+                    case "+":
+                        stack.push(v1 + v2);
+                        break;
+                    case "-":
+                        stack.push(v1 - v2);
 
-                } else if ("*".equals(token)) {
-                    stack.push(v1 * v2);
-                } else {
-                    stack.push(v1 / v2);
+                        break;
+                    case "*":
+                        stack.push(v1 * v2);
+                        break;
+                    default:
+                        stack.push(v1 / v2);
+                        break;
                 }
+            } else if (isNumber) {
+                stack.push(Integer.parseInt(token));
             }
         }
 
@@ -111,6 +123,9 @@ public class Off36M {
     private boolean isNumber(String s) {
         char[] chars = s.toCharArray();
         for (char aChar : chars) {
+            if ('-' == aChar) {
+                continue;
+            }
             if (aChar < '0' || aChar > '9') {
                 return false;
             }
