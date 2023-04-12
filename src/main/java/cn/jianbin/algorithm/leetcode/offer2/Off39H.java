@@ -10,7 +10,7 @@ import java.util.LinkedList;
  * @date 2023/4/9 20:18
  */
 @UtilityClass
-public class Offer39H {
+public class Off39H {
 
     public static void main(String[] args) {
         System.out.println(solution(Utils.arr("5,4,1,3")));
