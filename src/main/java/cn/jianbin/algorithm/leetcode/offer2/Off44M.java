@@ -82,6 +82,9 @@ public class Off44M {
             // 当前高度 = 结果中的个数
             ret.add(cur.val);
         } else {
+
+            // 说明这一层已经遍历过加过值了（第一次到这一层的时候加的）
+            // 比较之前加的值 和 当前正在遍历的值的大小，谁大谁放入；
             ret.set(curHeight, Math.max(ret.get(curHeight), cur.val));
         }
 
