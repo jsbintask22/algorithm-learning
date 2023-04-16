@@ -20,6 +20,8 @@ import java.util.LinkedList;
  *
  * 示例：
  *
+ *
+ *
  * 输入：
  * inputs = ["MovingAverage", "next", "next", "next", "next"]
  * inputs = [[3], [1], [10], [3], [5]]
