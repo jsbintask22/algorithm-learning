@@ -62,7 +62,7 @@ public class Off46M {
 
             for (int i = 0; i < size; i++) {
                 TreeNode cur = deque.poll();
-                int val = (int) cur.val;
+                int val = cur.val;
                 if (i == size - 1) {
                     // 最后一个；
                     ret.add(val);
