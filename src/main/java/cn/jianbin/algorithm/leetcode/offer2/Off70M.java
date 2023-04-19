@@ -53,10 +53,41 @@ import lombok.experimental.UtilityClass;
  * 注意：本题与主站 852 题相同：https://leetcode-cn.com/problems/peak-index-in-a-mountain-array/
  */
 @UtilityClass
-public class Off69E {
+public class Off70M {
 
     public static void main(String[] args) {
 
+    }
+
+    public int solution2(int[] arr) {
+        // 解法2； 已知 数组中只有一个 这样的 值，
+        // 假设这个下标 是  x，则  x一定是 偶数（因为是排序的
+        // 在 x 的左边 y（偶数）肯定有 arr[y] = arr[y + 1]，
+        // 在 x 的右边 z （偶数）肯定有 arr[z] != arr[z + 1],
+        // 因为在 二分的过程中， 只要确保了 mid 是偶数 并且满足了
+        // arr[mid] = arr[mid + 1]，就把 left 往右边逼近
+        // 不满足则 把 right 往左边逼近
+
+        int left = 0;
+        int right = arr.length - 1;
+
+        while (left < right) {
+            int mid = left + (right - left >> 1);
+            // 如果mid 是偶数， 则 &1 后为 0，-0 后偶数不变.
+            // 如果 mid 是奇数，则 &1 后为 1， -1 后就变成了 偶数
+            mid -= mid & 1;
+
+            // 1 1 2 5 5 6 6 9 9
+            if (arr[mid] == arr[mid + 1]) {
+                // 满足了 在 x 的左边，mid又是偶数，可以直接 +2，肯定会落在一个偶数处
+                left += mid + 2;
+            } else {
+                // 不满足，说明 mid 在x 右边 OR = x
+                right = mid;
+            }
+        }
+
+        return left;
     }
 
     public int peakIndexInMountainArray(int[] arr) {
