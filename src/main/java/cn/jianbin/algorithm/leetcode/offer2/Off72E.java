@@ -39,6 +39,31 @@ public class Off72E {
 
     }
 
+    public int mySqrt2(int x) {
+        int left = 0;
+        int right = x;
+
+        while (left <= right) {
+            int mid = left + (right - left >> 1);
+
+            long val = (long) mid * mid;
+
+            if (val <= x) {
+                // 满足条件. 尝试继续放大；
+                left = mid + 1;
+            } else {
+                // 不满足； val > x; 尝试放小.
+                right = mid - 1;
+            }
+        }
+
+        // right 是最后一个满足 val <= x 的数，
+        // left 是第一个 满足 val > x 的数，
+        // 返回 right;
+        return right;
+    }
+
+
     public int mySqrt(int x) {
         // 解法，二分；
         // 一个数 x 的整数平方根， 总是 从 1 开始 到 x 这个区间内，
@@ -67,6 +92,6 @@ public class Off72E {
             }
         }
 
-        return left - 1;
+        return right;
     }
 }
