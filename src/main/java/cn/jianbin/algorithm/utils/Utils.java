@@ -73,7 +73,7 @@ public class Utils {
     public int[] genArr(int l) {
         int[] arr = new int[l];
         for (int i = 0; i < l; i++) {
-            arr[i] = RandomUtil.randomInt(0, 100);
+            arr[i] = RandomUtil.randomInt(-100, 100);
         }
 
         return arr;

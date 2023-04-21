@@ -7,7 +7,7 @@ import lombok.experimental.UtilityClass;
 public class HeapSort {
 
     public static void main(String[] args) {
-        int[] arr = Utils.genArr(1);
+        int[] arr = Utils.genArr(10);
         Utils.printArr(arr);
         Utils.splitLine();
 
@@ -61,6 +61,7 @@ public class HeapSort {
     public void heapInsert(int[] arr, int index) {
         int parent = (index - 1) / 2;
 
+        // 5 9 10 4
         while (arr[index] > arr[parent]) {
             swap(arr, index, parent);
             index = parent;
@@ -69,6 +70,8 @@ public class HeapSort {
     }
 
     public void swap(int[] arr, int i1, int i2) {
+        // a ^ a = 0
+        // 0 ^ a = a 利用这原理.
         int temp = arr[i1] ^ arr[i2];
         arr[i1] = temp ^ arr[i1];
         arr[i2] = temp ^ arr[i1];

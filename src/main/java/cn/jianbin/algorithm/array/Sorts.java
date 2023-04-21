@@ -183,7 +183,7 @@ public class Sorts {
     }
 
     public int[] quickSort(int[] arr, int start, int end) {
-        if (arr == null || end - start < 1) {
+        if (start >= end) {
             return arr;
         }
 
@@ -303,7 +303,7 @@ public class Sorts {
         Map<Integer, Integer> countMap = new TreeMap<>();
         for (int i = 0; i < arr.length; i++) {
             int key = arr[i];
-            countMap.put(key, countMap.containsKey(key) ? countMap.get(key) + 1 : 1);
+            countMap.put(key, countMap.getOrDefault(key, 0) + 1);
         }
 
         AtomicInteger idx = new AtomicInteger();
