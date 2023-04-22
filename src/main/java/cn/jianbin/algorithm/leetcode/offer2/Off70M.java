@@ -4,53 +4,32 @@ import lombok.experimental.UtilityClass;
 
 /**
  * @author jianbin.
- * @date 2023/4/17 21:10
+ * @date 2023/4/18 19:14
  *
- * 剑指 Offer II 069. 山峰数组的顶部
- * 符合下列属性的数组 arr 称为 山峰数组（山脉数组） ：
+ * 剑指 Offer II 070. 排序数组中只出现一次的数字
+ * 给定一个只包含整数的有序数组 nums ，每个元素都会出现两次，唯有一个数只会出现一次，请找出这个唯一的数字。
  *
- * arr.length >= 3
- * 存在 i（0 < i < arr.length - 1）使得：
- * arr[0] < arr[1] < ... arr[i-1] < arr[i]
- * arr[i] > arr[i+1] > ... > arr[arr.length - 1]
- * 给定由整数组成的山峰数组 arr ，返回任何满足 arr[0] < arr[1] < ... arr[i - 1] < arr[i] > arr[i + 1] > ... > arr[arr.length - 1] 的下标 i ，即山峰顶部。
+ * 你设计的解决方案必须满足 O(log n) 时间复杂度和 O(1) 空间复杂度。
  *
  *
  *
- * 示例 1：
+ * 示例 1:
  *
- * 输入：arr = [0,1,0]
- * 输出：1
- * 示例 2：
+ * 输入: nums = [1,1,2,3,3,4,4,8,8]
+ * 输出: 2
+ * 示例 2:
  *
- * 输入：arr = [1,3,5,4,2]
- * 输出：2
- * 示例 3：
- *
- * 输入：arr = [0,10,5,2]
- * 输出：1
- * 示例 4：
- *
- * 输入：arr = [3,4,5,1]
- * 输出：2
- * 示例 5：
- *
- * 输入：arr = [24,69,100,99,79,78,67,36,26,19]
- * 输出：2
+ * 输入: nums =  [3,3,7,7,10,11,11]
+ * 输出: 10
  *
  *
- * 提示：
+ * 提示:
  *
- * 3 <= arr.length <= 104
- * 0 <= arr[i] <= 106
- * 题目数据保证 arr 是一个山脉数组
- *
- *
- * 进阶：很容易想到时间复杂度 O(n) 的解决方案，你可以设计一个 O(log(n)) 的解决方案吗？
+ * 1 <= nums.length <= 105
+ * 0 <= nums[i] <= 105
  *
  *
- *
- * 注意：本题与主站 852 题相同：https://leetcode-cn.com/problems/peak-index-in-a-mountain-array/
+ * 注意：本题与主站 540 题相同：https://leetcode-cn.com/problems/single-element-in-a-sorted-array/
  */
 @UtilityClass
 public class Off70M {
@@ -59,60 +38,33 @@ public class Off70M {
 
     }
 
-    public int solution2(int[] arr) {
-        // 解法2； 已知 数组中只有一个 这样的 值，
-        // 假设这个下标 是  x，则  x一定是 偶数（因为是排序的
-        // 在 x 的左边 y（偶数）肯定有 arr[y] = arr[y + 1]，
-        // 在 x 的右边 z （偶数）肯定有 arr[z] != arr[z + 1],
-        // 因为在 二分的过程中， 只要确保了 mid 是偶数 并且满足了
-        // arr[mid] = arr[mid + 1]，就把 left 往右边逼近
-        // 不满足则 把 right 往左边逼近
+    public int singleNonDuplicate(int[] nums) {
+        // 解法； 2分查找；
+        // 在这样一个数组中   1 1 2 3 3 4 4 5 5
+        // 假设  2（下标2） 就是要找的值，则可以观察得到;
+        //  2 的左边  arr[y] = arr[y + 1]  此时 y 一定是 偶数
+        // 在 2 的右边， arr[z] = arr[z + 1] 此时 z 一定是 奇数
+        // 则可以通过 二分， 每次得到 mid，假设  arr[mid] = arr[mid + 1]
+        // 则  2 肯定在 mid 的右边， left 指针右移动,
+        // 假设     arr[mid] = arr[mid - 1]，则 mid 肯定在 2 的左边，
+        // right 右移动.
+        // 假设不满足上面条件，说明  2 就找到了.
 
         int left = 0;
-        int right = arr.length - 1;
+        int right = nums.length - 1;
 
-        while (left < right) {
+        while (left <= right) {
             int mid = left + (right - left >> 1);
-            // 如果mid 是偶数， 则 &1 后为 0，-0 后偶数不变.
-            // 如果 mid 是奇数，则 &1 后为 1， -1 后就变成了 偶数
-            mid -= mid & 1;
 
-            // 1 1 2 5 5 6 6 9 9
-            if (arr[mid] == arr[mid + 1]) {
-                // 满足了 在 x 的左边，mid又是偶数，可以直接 +2，肯定会落在一个偶数处
-                left += mid + 2;
+            if (nums[mid] == nums[mid + 1]) {
+                left = mid + 1;
+            } else if (nums[mid] == nums[mid - 1]) {
+                right = mid - 1;
             } else {
-                // 不满足，说明 mid 在x 右边 OR = x
-                right = mid;
+                return left;
             }
         }
 
         return left;
-    }
-
-    public int peakIndexInMountainArray(int[] arr) {
-        // 解法； 二分；
-        // 根据题意， 假设   k 满足山峰。
-        // 假如  i < k
-        // 则肯定有  arr[i] < arr[i + 1],
-        // 加入 i > k
-        // 则肯定有  arr[i] > arr[i + 1];
-        // 利用二分不断逼近这个值.
-
-        int left = 0;
-        int right = arr.length - 2;
-        int ret = -1;
-        while (left <= right) {
-            int mid = left + (right - left >> 1);
-
-            if (arr[mid] > arr[mid + 1]) {
-                ret = mid;
-                right = mid - 1;
-            } else {
-                left = mid + 1;
-            }
-        }
-
-        return ret;
     }
 }
