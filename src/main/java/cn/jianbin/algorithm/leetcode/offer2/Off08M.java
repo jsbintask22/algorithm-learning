@@ -55,6 +55,7 @@ public class Off08M {
         int sum = 0;
         int ret = Integer.MAX_VALUE;
 
+        // 滑动窗口，找到一个符合 条件的区间，然后记录这个区间的 和，比较长度；
         while (end < arr.length) {
             sum += arr[end];
 

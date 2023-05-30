@@ -63,6 +63,7 @@ public class Off02E {
 
         int last = 0;
         while (al >= 0 || bl >= 0) {
+            // 这个 - ‘0’ 比较关键， 把 字符串 ”0“ ”1“  换算成数字 ”0“ ”1“
             int av = al >= 0 ? as[al--] - '0' : 0;
             int bv = bl >= 0 ? bs[bl--] - '0' : 0;
 

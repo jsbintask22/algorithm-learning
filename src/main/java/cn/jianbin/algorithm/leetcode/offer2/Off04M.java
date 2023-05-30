@@ -31,6 +31,10 @@ import cn.jianbin.algorithm.utils.Utils;
  *
  *
  * 进阶：你的算法应该具有线性时间复杂度。 你可以不使用额外空间来实现吗？
+ *
+ *  NO PASS
+ *
+ * 注意：本题与主站 137 题相同：https://leetcode-cn.com/problems/single-number-ii/
  */
 public class Off04M {
 

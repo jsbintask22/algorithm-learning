@@ -71,10 +71,12 @@ public class Off07M {
         int length = arr.length;
 
         for (int first = 0; first < length; first++) {
+            // -1 -1 0 1  这里如果 arr[first] == arr[first - 1] 则他们的答案肯定是重合的。因为元素内容重复了；
             if (first > 0 && arr[first] == arr[first - 1]) {
                 continue;
             }
 
+            // 如果第一个元素已经 大于0了，则没有必要了（已经排好序了），不可能等于 0 了；
             if (arr[first] > 0) {
                 break;
             }
@@ -82,10 +84,12 @@ public class Off07M {
             int third = length - 1;
 
             for (int second = first + 1; second < length; second++) {
+                // 同上，找下去也说明 重叠了； 直接找下一个；
                 if (second > first + 1 && arr[second] == arr[second - 1]) {
                     continue;
                 }
 
+                // 两个元素已经 大于 0 了，直接退出；
                 if (arr[first] + arr[second] > 0) {
                     break;
                 }
