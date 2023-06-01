@@ -62,6 +62,8 @@ public class Off11M {
             preSum += arr[i] == 0 ? -1 : 1;
 
             // 检查 presum 是否已经在map中出现过了；
+            // eg.  0,0,0,1,1,1  -> -1,-2,-3,-2,-1,0
+            //      0,1,0,1,1,0  -> -1,0,-1,0,1,0
             if (preMap.containsKey(preSum)) {
                 maxLen = Math.max(maxLen, i - preMap.get(preSum));
             } else {

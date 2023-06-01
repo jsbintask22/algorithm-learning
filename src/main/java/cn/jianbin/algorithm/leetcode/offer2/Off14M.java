@@ -44,6 +44,9 @@ public class Off14M {
     }
 
     public boolean solution(String s1, String s2) {
+        // 解法；滑动窗口；
+        // 定义只要在 s1 的长度（l1） 这个连续的范围内，出现了 字符的数量相等并且字符数相同，就说明肯定是字串；
+        // 已经不在范围内的字符 记得 清除；
         if (s1.length() > s2.length()) {
             return false;
         }

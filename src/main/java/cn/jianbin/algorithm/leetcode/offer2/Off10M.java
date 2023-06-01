@@ -54,6 +54,8 @@ public class Off10M {
         int ret = 0;
 
         int pre = 0;
+
+        // 5 1 2 3
         while (start < length) {
             pre += arr[start++];
             ret += count.getOrDefault(pre - target, 0);

@@ -49,12 +49,16 @@ import lombok.experimental.UtilityClass;
 public class Off17H {
 
     public static void main(String[] args) {
+        System.out.println(solution("ABBCE", "ABC"));
+
         System.out.println(solution("ADOBECODEBANC", "ABC"));
         System.out.println(minWindow("ADOBECODEBANC", "ABC"));
 
     }
 
     public static String solution(String s, String t) {
+
+        // 解题； 先从 s 上找出一个满足要求的窗口出来，再尝试缩容这个窗口得出一个最小值；
         if (t.length() > s.length()) {
             return "";
         }
@@ -63,12 +67,16 @@ public class Off17H {
         int sLen = s.length();
 
         // 初始化一个 字符数组，进行第一轮比较
+        // ABBCE  ABC
         int[] tChars = new int[256];
         for (int i = 0; i < tLen; i++) {
             tChars[t.charAt(i)]++;
             tChars[s.charAt(i)]--;
         }
 
+        // 注意，这里的 diff 只有当 tChar > 0的时候才判断，说明只关注 t 字符串中多余的。
+        // 至于 s 字符串中多余的 小于 0 根本不用管； 因为也会通过 diff 体现出来
+        // 多了多少个，就会有多少个 小于0
         int diff = 0;
         for (int tChar : tChars) {
             if (tChar > 0) {
@@ -96,6 +104,7 @@ public class Off17H {
 
             if (diff != 0) {
                 // 抵消完了以后，检查是否已经找到了这么一个窗口；
+                // != 0，说明还没找出这个窗口来；
                 end++;
                 continue;
             }
@@ -107,7 +116,7 @@ public class Off17H {
                 tChars[s.charAt(start)]++;
 
                 if (tChars[s.charAt(start)] == 1) {
-                    // == 1，说明有一个 目标元素被新加进来了， diff++；
+                    // == 1，说明有一个 目标元素(t中的元素）被新加进来了， diff++；
                     diff++;
                 }
             }

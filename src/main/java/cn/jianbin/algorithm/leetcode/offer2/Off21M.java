@@ -88,7 +88,7 @@ public class Off21M {
             fast = fast.next;
         }
 
-        // 此时，fast 的下一个节点即为要移除的节点；
+        // 此时，slow 的下一个节点即为要移除的节点；
         ListNode remove = slow.next;
         slow.next = remove.next;
 

@@ -66,7 +66,8 @@ public class Off22M {
 
     public ListNode solution(ListNode head) {
         // 解法1： 用一个 hashmap 存储每次走过的路径； 如果这个路径在map中存在的，则说明 有环； 如果下一个为空，无环
-        // 解法2： slow走一步，fast走两步，最终肯定会在 环里面相遇； 相遇时，重新从头开始，知道 pre 和 slow 相遇；
+        // 解法2： slow走一步，fast走两步，最终肯定会在 环里面相遇； 相遇时，一个指针pre重新从头开始，直到 pre 和 slow 相遇；
+        // 相遇点就是 环的入口
 
         ListNode slow = head;
         ListNode fast = head;

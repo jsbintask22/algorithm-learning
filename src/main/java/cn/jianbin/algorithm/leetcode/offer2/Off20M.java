@@ -51,6 +51,7 @@ public class Off20M {
         int len = s.length();
         int max = 0;
 
+        // abca
         while (start < len) {
             // 回文串中心 可以为 一个点 也可以为 两个点(偶数）
             max += countPalindrome(s, start, start);

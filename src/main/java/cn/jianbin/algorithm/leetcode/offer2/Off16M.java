@@ -45,8 +45,12 @@ import lombok.experimental.UtilityClass;
 public class Off16M {
 
     public static void main(String[] args) {
-        System.out.println(solution("pwwkew"));
+        System.out.println(solution("tmmzuxt"));
+
+        System.out.println(solution("dvdf"));
+        System.out.println(solution("pawwkew"));
         System.out.println(solution("abcaec"));
+
 
     }
 
@@ -57,28 +61,37 @@ public class Off16M {
 
         int len = s.length();
         int start = 0;
-        int end = -1;
+        int end = 0;
 
-        int[] chars = new int[256];
+        // chars 用于存储 start - end 这个窗口期间生成的 字符； 用于判断是否已经出现过了.
+        int[] store = new int[256];
         int max = 0;
 
-        while (start < len) {
-            if (start != 0) {
-                // 不等于0，拿么 chars 中肯定已经加入了字符； 把上一个字符从中去除；
-                chars[s.charAt(start - 1)] = 0;
-            }
-
-            // 检查当前字符是否 已经在 chars 里面了；
-            while (end + 1 < len && chars[s.charAt(end + 1)] == 0) {
-                // 不包含在里面； 加进去；
-                chars[s.charAt(end + 1)] = 1;
+        // pwwkew
+        // abc
+        while (end < len) {
+            // end 一直往后面走，直到出现重复字符了.
+            while (end < len && (store[s.charAt(end)] == 0)) {
+                // ==0， 说明一直没有重复，一直+; 并且一直存储这期间遇到的字符
+                // 没有重复，把当前字符的位置计入；  这里之所以要 + 1 是因为我们用的 == 0 判断之前是否出现过；
+                store[s.charAt(end)] = end + 1;
                 end++;
             }
 
-            // 从上面出来，必然是存在重复了； 计算下最大值；
-            max = Math.max(max, end - start + 1);
+            // 从上面出来，要么重复，要么 end 已经到末尾了. 不管哪种情况直接计算 最大长度；
+            max = Math.max(max, end - start);
 
-            start++;
+            // 如果是遇到重复了。把之前加进去的干掉.
+            if (end < len) {
+                // 干掉后还要重置 start 指针；
+                // 这里关键在于要滑动到上一个 重复字符出现的位置 + 1
+                // 这里要跟现有的 start 进行一次比较是怕  滑动回了比 start 还小的位置； 这是不符合规定的（必须连续）
+                // 比如 abba   start 在b2 位置，然后a出现， 直接滑动回了 a0;  那最大值就变成了   5 - 1 = 4
+                start = Math.max(store[s.charAt(end)], start);
+
+                // 然后把之前重复的字符 删掉（置位0）
+                store[s.charAt(end)] = 0;
+            }
         }
 
 

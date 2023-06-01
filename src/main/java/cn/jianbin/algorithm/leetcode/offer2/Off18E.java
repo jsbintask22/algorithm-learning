@@ -80,6 +80,7 @@ public class Off18E {
 
     private char toUpper(char c) {
         if (c >= 'a' && c <= 'z') {
+            // 这里之所以不是 26 是因为 Z 和 a 之间还有 6 个字符
             return (char) (c - 32);
         }
 
