@@ -115,6 +115,7 @@ public class Off28M {
 
         Node last = head;
 
+        // 深度优先，每遇到child 就马上去处理 child（并且返回重组过后的 尾节点；
         while (head != null) {
             Node next = head.next;
             Node child = head.child;

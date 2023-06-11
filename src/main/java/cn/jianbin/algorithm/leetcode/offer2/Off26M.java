@@ -87,11 +87,12 @@ public class Off26M {
             ListNode startNode = deque.get(start);
             startNode.next = deque.get(end);
             start++;
+            // 这里很关键， 1 -> 4 后，还要让 4 -> 1原本的下一个节点 2  4 -> 1 -> 2
             startNode.next.next = deque.get(start);
             end--;
         }
 
-        // 把中间的 （3） 的next干掉（它是最后一个节点了）
+        // 把中间的 （3） 的next干掉（它是最后一个节点了）; 如果不干掉 它会指向自己；  4 1 2 3 -> 3 -> 3
         deque.get(start).next = null;
     }
 

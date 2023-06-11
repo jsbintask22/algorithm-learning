@@ -79,11 +79,14 @@ public class Off29M {
         ListNode next = cur.next;
 
         while (true) {
+            // 恰好卡在 中间； 大于前一个，小于后一个；
             if (cur.val <= insertVal && insertVal <= next.val) {
                 cur.next = new ListNode(insertVal, next);
                 return head;
             }
 
+            // 第二种情况； 遇到转折点了（它是最大的）;
+            // 小于前一个，并且大于后一个； 并且 当且小于 < 下一个（转折点）
             if (next.val < cur.val && (insertVal <= next.val || insertVal >= cur.val)) {
                 cur.next = new ListNode(insertVal, next);
                 return head;
