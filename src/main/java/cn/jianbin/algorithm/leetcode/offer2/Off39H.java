@@ -55,13 +55,14 @@ public class Off39H {
     public int solution(int[] heights) {
         // 解法：最大面积是指定一个中间节点后往两边扩散，当扩散不了（必须是长方形）的时候，计算面积，然后
         // 继续下一个中心节点； 此为 暴力遍历法
-        // 利用单调栈 的特性，知道遇到比前面一个 小的元素，这个时候才开始 计算宽度；
+        // 利用单调栈 的特性，直到遇到比前面一个 小的元素，这个时候才开始 计算宽度；
 
         LinkedList<Integer> stack = new LinkedList<>();
         stack.push(-1);
 
         int len = heights.length;
         int max = Integer.MIN_VALUE;
+        // 2 5 4 3
         for (int i = 0; i < len; i++) {
             while (stack.peek() != -1 && heights[stack.peek()] > heights[i]) {
                 // 当前高度比前面高度矮，计算高度；

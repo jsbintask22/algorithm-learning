@@ -77,13 +77,15 @@ public class Off82M {
             return;
         }
 
-        // 去重常用手段； 用for 来代替另一种选择， 用 arr[i] == arr[i - 1] 来检查是否重复
+        // 去重常用手段； 用for 来代替另一种选择（前提是先排好序了）， 用 arr[i] == arr[i - 1] 来检查是否重复
+        // 不是按顺序的一个一个选择可以用这种方式.
         for (int i = curIdx; i < arr.length; i ++) {
             // 已经排好序了； 所以剩下的如果小于 当前值就没必要走了.
             if (arr[i] > remained) {
                 break;
             }
 
+            // 比如 1 1 3  那么 第二个 1 是没有意义的，所有直接下一个.
             if (i > curIdx && arr[i] == arr[i - 1]) {
                 continue;
             }

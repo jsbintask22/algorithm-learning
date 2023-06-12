@@ -3,6 +3,7 @@ package cn.jianbin.algorithm.leetcode.offer2;
 import lombok.experimental.UtilityClass;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -42,7 +43,7 @@ import java.util.List;
 public class Off86M {
 
     public static void main(String[] args) {
-        System.out.println(partition("google"));
+        System.out.println(Arrays.deepToString(partition("google")));
         System.out.println(ret);
     }
 
@@ -52,7 +53,7 @@ public class Off86M {
         boolean[][] dp = new boolean[len][len];
 
         // 赋值；
-        // dp[i][j] = s[i] == s[j] && (j - i < 2 || dp[i + 1][j - 1];
+        // dp[i][j] = s[i] == s[j] && (j - i < 2 || dp[i + 1][j - 1]);
 
         // 想象 正方形， 固定住 列，然后从上往下面扫(最多扫到 i = j（中间的对角线）
         // 之所以要这么扫的原因是； dp[i][j] 这个坐标的值依赖 左下角（i + 1, j - 1)

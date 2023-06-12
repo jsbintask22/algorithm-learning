@@ -129,7 +129,7 @@ public class Off78M {
             }
         }
 
-        // 数组中的 最小位置 要指向下一个节点.
+        // 数组中的 最小位置 要指向下一个节点.(下次还要进这个方法），不然还是从0开始.
         list[minIdx] = list[minIdx].next;
 
         // min 的next要干掉.

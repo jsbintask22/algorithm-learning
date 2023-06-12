@@ -92,11 +92,13 @@ public class Off71M {
             // 因为是 <= ，所以 bound 要在基础上 + 1（后面一个是不包含的)
             // 就变成了 1 <= bound <= max
             // 然后检查 bound 落在哪个区间，这个过程可以用 二分（presum是有序的）
+
+            //
             int bound = random.nextInt(preSum[preSum.length - 1]) + 1;
 
             // 1  2  4  3
 
-            // 1  3  7  10
+            // 0 1  3  7  10
             int left = 0;
             int right = preSum.length - 1;
 
@@ -107,6 +109,8 @@ public class Off71M {
             while (left < right) {
                 int mid = left + (right - left >> 1);
 
+                // 最终满足条件的结果为 1 < bound <= presum[mid]
+                // preSum[mid] < bound <= preSum[mid+1]
                 if (preSum[mid] < bound) {
                     left = mid + 1;
                 } else {

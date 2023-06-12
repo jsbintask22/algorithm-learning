@@ -1,5 +1,8 @@
 package cn.jianbin.algorithm.leetcode.offer2;
 
+import cn.jianbin.algorithm.utils.Utils;
+import lombok.experimental.UtilityClass;
+
 /**
  * @author aaron.zou
  * @date 2023/4/23 7:03 PM
@@ -50,10 +53,11 @@ package cn.jianbin.algorithm.leetcode.offer2;
  *
  * 注意：本题与主站 852 题相同：https://leetcode-cn.com/problems/peak-index-in-a-mountain-array/
  */
+@UtilityClass
 public class Off69E {
 
     public static void main(String[] args) {
-
+        System.out.println(peakIndexInMountainArray(Utils.arr("1,2,7,5,1")));
     }
 
     public int peakIndexInMountainArray(int[] arr) {
@@ -66,17 +70,13 @@ public class Off69E {
         while (left <= right) {
             int mid = left + (right - left >> 1);
 
-            // 如果 mid > mid + 1 说明 在 target 右边（开始递减了）
-            // 如果 mid < mid + 1 说明 在 target 左边（递增）
-            if (arr[mid] < arr[mid - 1]) {
+            if (arr[mid] > arr[mid - 1]) {
                 left = mid + 1;
             } else {
-                // 此时 mid 是一个答案.
-                ret = mid;
                 right = mid - 1;
             }
         }
 
-        return ret;
+        return right;
     }
 }

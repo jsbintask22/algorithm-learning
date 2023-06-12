@@ -56,7 +56,7 @@ public class Off65M {
         // 则它一定已经包含在里面了；
         Set<String> set = new HashSet<>(Arrays.asList(words));
 
-
+        // time me bell
         for (String word : words) {
             int i = 1;
             while (i < word.length()) {
